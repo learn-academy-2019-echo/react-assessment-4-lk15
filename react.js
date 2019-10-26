@@ -5,6 +5,18 @@
 
 // 1. Write a React component that prints "I am a component!" Be sure to include all necessary imports, exports, etc.
 
+import React, { Component } from 'react';
+
+class App{
+  render() {
+    return(
+      <div>
+        <h1>I am a component!</h1>
+      </div>
+    )
+  }
+}
+export default App
 
 
 
@@ -13,10 +25,11 @@
 
 var names = ["Ford Prefect", "Arthur Dent", "Trillian", "Zaphod", "Vogon", "Marvin, the Paranoid Android"]
 
-for(let i=0; i<names.length; i++){
-  console.log(`${names[i]} is ${names[i].length} characters long.`)
-}
+// for(let i=0; i<names.length; i++){
+//   console.log(`${names[i]} is ${names[i].length} characters long.`)
+// }
 
+names.map(name => console.log(`${name} is ${name.length} characters long.`))
 
 
 // 3. Destructure the following variables out of state.
@@ -27,6 +40,7 @@ this.state = {
   dislikes: ["mirrors", "garlic", "wooden stakes"]
 }
 
+let { name, home, dislikes } = this.state
 
 
 // 4. Write a React method that would add one and update the state of the count each time the method is called.
@@ -35,9 +49,13 @@ this.state = {
   count: 0
 }
 
+addAndUpdateCount = () => {
+  let newCount = this.state.count + 1
+  this.setState({count: newCount})
+}
 
 
-// 5. There are four mistakes in this code that would cause it to break our application. Find the mistakes and fix them:
+// 5. There are four mistakes in this code that would cause it to break our application. Find the mistakes and fix them: 
 
 import React, { Component } from 'react';
 
@@ -45,22 +63,22 @@ class Recipes{
   constructor(props){
     super(props)
     this.state = {
-      recipes:
+      recipes: [
         {name: 'Meatballs'},
         {name: 'Mac & Cheese'}
+      ]
     }
   }
 
   render() {
     return(
-      let recipe = recipes.map(recipe => {
-        return(
-          <li key={recipe.name}>{recipe.name}</li>
-        )
-      })
-      <ul>
-        {recipe}
-      </ul>
+      <div>
+       <ul>
+          {this.state.recipes.map((recipe, index) => {
+          return(<li key={index}>{recipe.name}</li>)
+          })}
+        </ul>
+      </div>
     )
   }
 }
